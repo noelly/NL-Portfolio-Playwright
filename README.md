@@ -12,7 +12,7 @@ This repository is for personal use only. The content and code within this repos
 v1.48.2
 
 **Node Version:**
-v20.9.0
+v23.4.0
 
 **NPM Version:**
 v10.5.2
@@ -20,6 +20,13 @@ v10.5.2
 ## Set Up
 - Clone git repository
 - run `npm install`
+
+## Check and update node version with NVM
+
+- node -v
+- nvm install 23.4.0
+- nvm use 23.4.0
+- nvm alias default 23.4.0
 
 ## Update with latest dependencies
 
