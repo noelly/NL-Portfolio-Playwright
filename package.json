@@ -1,0 +1,26 @@
+{
+  "name": "motortrend-qa-automation-pw",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cms": "npx playwright test tests/CMS/ --headed --project=CMS && npx playwright show-report",
+    "CMS": "npx playwright test tests/CMS/ --project=CMS && npx playwright show-report",
+    "mt": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
+    "MT": "npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
+    "MT-test": "npx playwright test --headed --project=Motortrend", 
+    "MT-spec": "npx playwright test --project=Motortrend",
+    "CMS-test": "npx playwright test --headed --project=CMS",
+    "CMS-spec": "npx playwright test --project=CMS",
+    "show-report": "npx playwright show-report",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@faker-js/faker": "^9.2.0",
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.6"
+  }
+}
