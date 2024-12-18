@@ -8,4 +8,4 @@ playwright-report/index.html
 .auth/user.json
 tests/VisualTesting/*-snapshots/
 /screenshots/
-
+*.png
