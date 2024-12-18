@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "cms": "npx playwright test tests/CMS/ --headed --project=CMS && npx playwright show-report",
-    "CMS": "npx playwright test tests/CMS/ --project=CMS && npx playwright show-report",
-    "mt": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
+    "motortrend": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "MT": "npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
-    "MT-test": "npx playwright test --headed --project=Motortrend", 
-    "MT-spec": "npx playwright test --project=Motortrend",
-    "CMS-test": "npx playwright test --headed --project=CMS",
-    "CMS-spec": "npx playwright test --project=CMS",
+    "test": "npx playwright test --headed --project=Motortrend", 
+    "headless-test": "npx playwright test --project=Motortrend",
     "show-report": "npx playwright show-report",
     "report": "npx playwright show-report"
   },
