@@ -56,7 +56,11 @@ export default defineConfig({
     { name: 'setup', testMatch: 'auth.setup.ts' },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], userAgent: 'QA' },
+      use: {
+        ...devices['Desktop Chrome'], userAgent: 'QA',
+        viewport: { width: 1600, height: 1000 },
+      },
+
     },
     {
       name: 'firefox',
@@ -80,7 +84,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         storageState: '.auth/user.json',
-        userAgent: 'QA', 
+        userAgent: 'QA',
       },
       dependencies: ['setup'], retries: 1, fullyParallel: true,
     },

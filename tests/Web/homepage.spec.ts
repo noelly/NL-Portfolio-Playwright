@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { PageManager } from '../../pages/pageManager.Page';
+import { subMenus } from '../../data/homepageheadersMT.data';
 
 test.beforeEach(async ({ page }) => {
   const pm = new PageManager(page);
@@ -19,5 +20,13 @@ test('Verify Homepage hero section', async ({ page }) => {
 
   await test.step(`Verify homepage title`, async () => {
     await pm.homepage().verifyPageTitle('MotorTrend: New Cars - Car News and Expert Reviews');
+  });
+
+  await test.step(`Verify all headers`, async () => {
+    await pm.homepage().verifyAllheaders(subMenus);
+  });
+
+  await test.step(`Verify all current articles on the homepage`, async () => {
+    await pm.homepage().verifyAllarticles;
   });
 });

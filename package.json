@@ -5,7 +5,7 @@
   "scripts": {
     "motortrend": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "MT": "npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
-    "test": "npx playwright test --headed --project=Motortrend", 
+    "test": "npx playwright test --headed --project=Motortrend",
     "headless-test": "npx playwright test --project=Motortrend",
     "show-report": "npx playwright show-report",
     "report": "npx playwright show-report"
@@ -18,5 +18,10 @@
     "@faker-js/faker": "^9.2.0",
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.8.6"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0",
+    "csv-stringify": "^6.5.2",
+    "fast-csv": "^5.0.2"
   }
 }
