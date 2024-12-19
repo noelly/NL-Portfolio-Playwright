@@ -9,14 +9,14 @@ export class Homepage extends HelperBase {
     readonly heroImage: Locator;
     readonly heroText: Locator;
     readonly allHeaders: Locator;
-    readonly allArticlesTitles: Locator;
+    readonly allArticles: Locator;
 
     constructor(page: Page) {
         super(page);
         this.heroImage = page.locator('[data-package="Hero3Up"] > div > a[data-id="hero-card"] div div:nth-child(2)');
         this.heroText = page.locator('[data-package="Hero3Up"] > div > a[data-id="hero-card"] div div:nth-child(2) h2');
         this.allHeaders = page.locator('h2[id*=":"]');
-        this.allArticlesTitles = page.locator('h2[data-card-title="true"]');
+        this.allArticles = page.locator('h2[data-card-title="true"]');
     }
 
     async navigateTo() {
@@ -50,28 +50,19 @@ export class Homepage extends HelperBase {
     }
 
     async verifyAllarticles() {
-        console.log(await this.allArticlesTitles.allTextContents());
-        await expect(this.allHeaders).toBeTruthy();
+        const allTitles = await this.allArticles.allTextContents();
+        console.log(allTitles);
+        expect(allTitles).toBeTruthy();
+        expect(allTitles.length).toBeGreaterThanOrEqual(30);
 
-        const articles = await this.allArticlesTitles.allTextContents();
-
-        articles.forEach(async element => {
-            let filepath = path.join(__dirname, '../data/MThomepageArticleList.csv');
-            await this.updateCSV(filepath, element);
-        });
+        for (let i = 0; i < allTitles.length; i++) {
+            await expect(this.allHeaders.nth(i)).toBeTruthy();
+        }
     }
 
-    private async updateCSV(filePath: string, value: string) {
-        const csvFile = fs.readFileSync(filePath);
-        const records = parse(csvFile, {
-            columns: true,
-            skip_empty_lines: true,
-        });
-        const updatedRecords = records.map((record: { comments: string; }) => {
-            record.comments = value; // Set the new value
-            return record;
-        });
-        const updatedCsv = stringify(updatedRecords, { header: true });
-        fs.writeFileSync(filePath, updatedCsv);
+    async getAllarticlesURL() {
+        const allTitles = await this.allArticles.allTextContents();
+        const allTitlesUrls = await this.allArticles.getAttribute('href');
+        const allArticlesURLs = [];
     }
 }

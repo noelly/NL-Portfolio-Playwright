@@ -25,8 +25,9 @@ test('Verify Homepage hero section', async ({ page }) => {
   await test.step(`Verify all headers`, async () => {
     await pm.homepage().verifyAllheaders(subMenus);
   });
+});
 
-  await test.step(`Verify all current articles on the homepage`, async () => {
-    await pm.homepage().verifyAllarticles;
-  });
+test('verify Articles', async ({ page }) => {
+  const pm = new PageManager(page);
+  await pm.homepage().verifyAllarticles();
 });
