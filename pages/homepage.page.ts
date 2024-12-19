@@ -60,9 +60,9 @@ export class Homepage extends HelperBase {
         }
     }
 
-    async getAllarticlesURL() {
-        const allTitles = await this.allArticles.allTextContents();
-        const allTitlesUrls = await this.allArticles.getAttribute('href');
-        const allArticlesURLs = [];
+    async getRiverArticles(count) {
+        const riverArticles = this.page.locator('[data-ids="CardMedia"]');
+        await expect(riverArticles).toHaveCount(count);
+
     }
 }

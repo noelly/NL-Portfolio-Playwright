@@ -1,6 +1,11 @@
-import { test } from '@playwright/test'
+import { test, devices } from '@playwright/test'
 import { PageManager } from '../../pages/pageManager.Page';
 import { subMenus } from '../../data/homepageheadersMT.data';
+
+test.use({
+  ...devices['iPhone 14 Pro'],
+  locale: 'en-US',
+})
 
 test.beforeEach(async ({ page }) => {
   const pm = new PageManager(page);
