@@ -64,7 +64,6 @@ export class Homepage extends HelperBase {
 
     async selectJoinNewsletter() {
         await this.page.locator('[data-id="join-newsletter"]').click();
-        await this.page.waitForResponse('https://www.motortrend.com/newsletters/?_rsc=esnzq');
         await this.page.waitForLoadState('networkidle');
     }
 }
