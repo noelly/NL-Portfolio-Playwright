@@ -12,7 +12,7 @@ test.use({
   permissions: ['geolocation'],
 })
 
-test('geolocation A', async ({ page }) => {
+test('California - Privacy Settings', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
   const DoNotSell = await page.getByText('Do Not Sell or Share My Personal Information').first();
@@ -25,7 +25,7 @@ test('geolocation A', async ({ page }) => {
 });
 
 
-test('geolocation B', async ({ page, context }) => {
+test('GDPR - privacy Settings EU', async ({ page, context }) => {
   const coords = { latitude: 50.9245541, longitude: 5.2435062 };
   context.setGeolocation(coords);
 

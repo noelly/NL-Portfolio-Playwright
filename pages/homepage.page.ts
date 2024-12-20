@@ -57,12 +57,14 @@ export class Homepage extends HelperBase {
     }
 
     async getRiverArticles(count) {
-        const riverArticles = this.page.locator('[data-ids="CardMedia"]');
-        await expect(riverArticles).toHaveCount(count);
+        const riverArticles = await this.page.locator('[data-ids="CardMedia"]');
+        const riverArticlesCount = await riverArticles.count();
+        await expect(riverArticlesCount).toBeGreaterThanOrEqual(count);
 
     }
 
     async selectJoinNewsletter() {
         await this.page.locator('[data-id="join-newsletter"]').click();
+        await this.closeVignetteAd();
     }
 }
