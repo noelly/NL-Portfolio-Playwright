@@ -3,23 +3,26 @@ import { Homepage } from './homepage.page';
 import { AccessDenied } from './acessDenied.page';
 import { WebenyLoginAndMain } from './webenyLoginAndMain.page';
 import { CreateArticle } from './webenyCreateArticle.page';
+import { Newsletters } from "./newsletters.page";
 import { WebenyArticles } from "./webenyArticles.page";
 import { WebenyHamburgerMenu } from "./webenyHamburgerMenu.page";
 
 export class PageManager {
 
-    private readonly page: Page
-    private readonly homePage: Homepage
-    private readonly accessDenied: AccessDenied
-    private readonly CreateArticle: CreateArticle
-    private readonly webenyLoginAndMain: WebenyLoginAndMain
-    private readonly webenyArticles: WebenyArticles
-    private readonly webenyHamburgerMenu: WebenyHamburgerMenu
+    private readonly page: Page;
+    private readonly homePage: Homepage;
+    private readonly accessDenied: AccessDenied;
+    private readonly CreateArticle: CreateArticle;
+    private readonly newsletters: Newsletters;
+    private readonly webenyLoginAndMain: WebenyLoginAndMain;
+    private readonly webenyArticles: WebenyArticles;
+    private readonly webenyHamburgerMenu: WebenyHamburgerMenu;
 
     constructor(page: Page) {
         this.page = page
         this.homePage = new Homepage(this.page);
         this.accessDenied = new AccessDenied(this.page);
+        this.newsletters = new Newsletters(this.page);
         this.webenyLoginAndMain = new WebenyLoginAndMain(this.page);
         this.webenyArticles = new WebenyArticles(this.page);
         this.webenyHamburgerMenu = new WebenyHamburgerMenu(this.page);
@@ -32,6 +35,10 @@ export class PageManager {
 
     accessDeniedPage() {
         return this.accessDenied
+    }
+
+    newslettersPage() {
+        return this.newsletters
     }
 
     webenyMain() {
