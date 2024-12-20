@@ -64,6 +64,5 @@ export class Homepage extends HelperBase {
 
     async selectJoinNewsletter() {
         await this.page.locator('[data-id="join-newsletter"]').click();
-        await this.page.waitForLoadState('networkidle');
     }
 }
