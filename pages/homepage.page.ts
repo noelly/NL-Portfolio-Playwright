@@ -1,9 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { HelperBase } from "./helperBase.page";
-import fs from 'fs';
-import path from 'path';
-import { stringify } from 'csv-stringify/sync';
-import { parse } from 'csv-parse/sync';
 
 export class Homepage extends HelperBase {
     readonly heroImage: Locator;
@@ -64,5 +60,11 @@ export class Homepage extends HelperBase {
         const riverArticles = this.page.locator('[data-ids="CardMedia"]');
         await expect(riverArticles).toHaveCount(count);
 
+    }
+
+    async selectJoinNewsletter() {
+        await this.page.locator('[data-id="join-newsletter"]').click();
+        await this.page.waitForResponse('https://www.motortrend.com/newsletters/?_rsc=esnzq');
+        await this.page.waitForLoadState('networkidle');
     }
 }

@@ -14,7 +14,12 @@ test.use({
 
 test('geolocation A', async ({ page }) => {
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  await page.getByText('Do Not Sell or Share My Personal Information').isVisible();
+
+  const DoNotSell = await page.getByText('Do Not Sell or Share My Personal Information').first();
+
+  if (await DoNotSell.isVisible()) {
+    await DoNotSell.click();
+  }
   await page.waitForTimeout(2000);
   await page.screenshot({ path: 'GeolocationA.png' });
 });
@@ -23,9 +28,13 @@ test('geolocation A', async ({ page }) => {
 test('geolocation B', async ({ page, context }) => {
   const coords = { latitude: 50.9245541, longitude: 5.2435062 };
   context.setGeolocation(coords);
-  
+
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  await page.getByText('Do Not Sell or Share My Personal Information').isVisible();
+
+  const DoNotSell = await page.getByText('Do Not Sell or Share My Personal Information').first();
+  if (await DoNotSell.isVisible()) {
+    await DoNotSell.click();
+  }
   await page.waitForTimeout(2000);
   await page.screenshot({ path: 'GeolocationB.png' });
 });
