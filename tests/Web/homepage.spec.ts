@@ -8,17 +8,17 @@ test.beforeEach(async ({ page }) => {
   await pm.accessDeniedPage().isAccessDenied("Motortrend");
 });
 
-test('Verify Homepage hero section', async ({ page }) => {
+test('Homepage - Hero and headers', async ({ page }) => {
   const pm = new PageManager(page);
-  await test.step(`Verify homepage hero section`, async () => {
+  await test.step(`Verify hero section`, async () => {
     await pm.homepage().verifyHeroSection();
   });
 
-  await test.step(`Verify homepage hero article section`, async () => {
+  await test.step(`Verify hero article section`, async () => {
     await pm.homepage().verifyHeroArticle();
   });
 
-  await test.step(`Verify homepage title`, async () => {
+  await test.step(`Verify SEO title`, async () => {
     await pm.homepage().verifyPageTitle('MotorTrend: New Cars - Car News and Expert Reviews');
   });
 
@@ -27,8 +27,10 @@ test('Verify Homepage hero section', async ({ page }) => {
   });
 });
 
-test('verify Articles', async ({ page }) => {
+test('Homepage - Articles', async ({ page }) => {
   const pm = new PageManager(page);
-  await pm.homepage().verifyAllarticles();
-  await pm.homepage().getRiverArticles(89);
+  await test.step(`Verify Articles and River`, async () => {
+    await pm.homepage().verifyAllarticles();
+    await pm.homepage().getRiverArticles(89);
+  });
 });
