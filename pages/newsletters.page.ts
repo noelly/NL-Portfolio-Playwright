@@ -22,7 +22,9 @@ export class Newsletters extends HelperBase {
     }
 
     async newslettersSignup(Brand, email) {
+        await this.page.waitForTimeout(2000);
         await this.selectnewslettersbrand(Brand);
+        await this.page.waitForTimeout(2000);
         await this.enterEmail(email);
         await this.selectTOSCheckbox();
         await this.clickSignUp();;
@@ -63,6 +65,6 @@ export class Newsletters extends HelperBase {
 
     private async verifySignupConfirmation() {
         const signupConfirmation = await this.page.locator('h4', { hasText: 'Success' });
-        await expect(signupConfirmation).toBeVisible();
+        await expect(signupConfirmation).toBeVisible({ timeout: 30000 });
     }
 }

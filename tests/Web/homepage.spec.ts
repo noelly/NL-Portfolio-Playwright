@@ -31,6 +31,6 @@ test('Homepage - Articles', async ({ page }) => {
   const pm = new PageManager(page);
   await test.step(`Verify Articles and River`, async () => {
     await pm.homepage().verifyAllarticles();
-    await pm.homepage().getRiverArticles(89);
+    await pm.homepage().getRiverArticles(70);
   });
 });

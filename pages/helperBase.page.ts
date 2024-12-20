@@ -1,11 +1,15 @@
-import { Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export class HelperBase {
-    
+
     readonly page: Page
+    readonly vignetteAds: Locator;
+    readonly vignetteAdClose: Locator;
 
     constructor(page: Page) {
-        this.page = page
+        this.page = page;
+        this.vignetteAds = page.locator('[id="ad_position_box"]');
+        this, this.vignetteAdClose = page.locator('[class="btn skip"]');
     }
 
     async waitForNumberofSeconds(numberOfSeconds: number) {
@@ -13,10 +17,18 @@ export class HelperBase {
     }
 
     async waitForPageLoad() {
-    //__wait for particular response to be complete
-    await this.page.waitForResponse('https://t.webiny.com/capture/')
+        //__wait for particular response to be complete
+        await this.page.waitForResponse('https://t.webiny.com/capture/')
 
-    //__wait for all netwarks calls to be completed (not recommended) / if calls dont complete , test qill stall
-    await this.page.waitForLoadState('networkidle');  
+        //__wait for all netwarks calls to be completed (not recommended) / if calls dont complete , test qill stall
+        await this.page.waitForLoadState('networkidle');
+    }
+
+    async closeVignetteAd() {
+        console.log('Vignette ad found  - dismissing...');
+        // switch iframe
+        const frame = this.page.frameLocator('iframe[id="google_ads_iframe_/3833/motortrend.primedia.com/homepage/null/interstitial_0"]');
+        const closeAd = frame.locator('[class="btn skip"]');
+        await closeAd.click();
     }
 }
