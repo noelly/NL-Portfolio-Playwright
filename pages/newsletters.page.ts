@@ -48,6 +48,7 @@ export class Newsletters extends HelperBase {
     private async enterEmail(email) {
         await this.page.getByPlaceholder('Email').click();
         await this.page.getByPlaceholder('Email').fill(email);
+        console.log(`Signup with email: ${email}`);
     }
 
     private async clickSignUp() {

@@ -1,6 +1,6 @@
-import { test } from '@playwright/test'
+import { test, devices } from '@playwright/test'
 import { PageManager } from '../../pages/pageManager.Page';
-import { subMenus } from '../../data/homepageheadersMT.data';
+import { faker } from '@faker-js/faker';
 
 test.beforeEach(async ({ page }) => {
   const pm = new PageManager(page);
@@ -10,6 +10,9 @@ test.beforeEach(async ({ page }) => {
 
 test('Homepage - Join Newsletter', async ({ page }) => {
   const pm = new PageManager(page);
+  const randomFullname = faker.person.fullName();
+  const randomEmail = `${randomFullname.replace(' ', '')}${faker.number.int({ min: 1, max: 1000 })}@gmail.com`;
+
   await test.step(`Select join newsletter`, async () => {
     await pm.homepage().selectJoinNewsletter();
   });
@@ -19,6 +22,6 @@ test('Homepage - Join Newsletter', async ({ page }) => {
   });
 
   await test.step(`Select MortorTrend and sign up`, async () => {
-    await pm.newslettersPage().newslettersSignup('MotorTrend', 'bTq6o@gmail.com');
+    await pm.newslettersPage().newslettersSignup('MotorTrend', randomEmail);
   });
 });
