@@ -1,7 +1,8 @@
 node_modules/
 /test-results/
-/playwright-report/
-playwright-report/index.html
+/playwright-report/*
+/playwright-report/index.html
+/playwright-report/*.html
 /blob-report/
 /playwright/.cache/
 .auth
@@ -9,4 +10,3 @@ playwright-report/index.html
 tests/VisualTesting/*-snapshots/
 /screenshots/
 *.png
-playwright-report/index.html
