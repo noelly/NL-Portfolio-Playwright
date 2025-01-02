@@ -9,3 +9,4 @@ playwright-report/index.html
 tests/VisualTesting/*-snapshots/
 /screenshots/
 *.png
+playwright-report/index.html
