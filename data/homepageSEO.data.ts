@@ -1,0 +1,20 @@
+export const CANONICAL_URL: string = 'https://www.motortrend.com/';
+export const KEYWORDS: string[] = [];
+export const GENRE: string = 'Automotive';
+export const GENRE_FULL: string = 'Automotive, Cars, Entertainment, Research, News, Reviews';
+export const META_SITE_NAME: string = 'MotorTrend';
+export const META_DESCRIPTION: string = 'Trust MotorTrend for the best car reviews, news, car rankings, and much more. With more than 70 years of experience, we\'re your home for everything automotive.';
+export const META_URL: string = 'https://www.motortrend.com/';
+export const OG_IMAGE: string = 'https://st.motortrend.com/app/themes/motortrend/mantle/modules/assets/motortrend-logo-share.png';
+export const OG_IMAGEFallback: string = 'https://d2kde5ohu8qb21.cloudfront.net/files/6725388e3a82490008e66e98/hot-rod-fallback1.jpg';
+export const PAGE_NAME: string = 'MotorTrend';
+export const PAGE_URL: string = '/';
+export const SCHEMAS: string[] = ['WebPage','WebSite','Organization'];
+export const SPEAKABLE_XPATH: string[] = ['/html/head/title', '/html/head/meta[@name="description"]/@content'];
+export const SUMMARY_LARGE_IMAGE: boolean = true;
+export const TITLE: string = "MotorTrend: New Cars - Car News and Expert Reviews ";
+export const TWITTER_SITE: string = '@motortrend';
+export const TWITTER_TITLE: string = "MotorTrend: New Cars - Car News and Expert Reviews ";
+export const URL: string = 'https://www.motortrend.com/';
+export const H1_TITLE: string = "MotorTrend: New Cars - Car News and Expert Reviews";
+export const SPEAKABLE: string = 'SpeakableSpecificiation'
