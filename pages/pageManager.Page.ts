@@ -1,4 +1,5 @@
 import { Page } from "@playwright/test";
+import { Ads } from "./ads.page";
 import { Homepage } from './homepage.page';
 import { AccessDenied } from './acessDenied.page';
 import { WebenyLoginAndMain } from './webenyLoginAndMain.page';
@@ -10,6 +11,7 @@ import { WebenyHamburgerMenu } from "./webenyHamburgerMenu.page";
 
 export class PageManager {
 
+    private readonly ads: Ads;
     private readonly page: Page;
     private readonly homePage: Homepage;
     private readonly accessDenied: AccessDenied;
@@ -22,6 +24,7 @@ export class PageManager {
 
     constructor(page: Page) {
         this.page = page
+        this.ads = new Ads(this.page);
         this.homePage = new Homepage(this.page);
         this.accessDenied = new AccessDenied(this.page);
         this.newsletters = new Newsletters(this.page);
@@ -34,6 +37,10 @@ export class PageManager {
 
     homepage() {
         return this.homePage
+    }
+
+    adsPage() {
+        return this.ads
     }
 
     accessDeniedPage() {

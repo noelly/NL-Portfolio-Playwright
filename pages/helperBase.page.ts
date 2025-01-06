@@ -31,4 +31,16 @@ export class HelperBase {
         const closeAd = frame.locator('[class="btn skip"]');
         await closeAd.click();
     }
+
+    async scrollToBottom() {
+        await this.page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+    }
+
+    async scrollToMiddle() {
+        await this.page.evaluate(() => window.scrollBy(0, document.body.scrollHeight));
+    }
+
+    async scrollToTop() {
+        await this. page.keyboard.down("PageUp");
+    }
 }
