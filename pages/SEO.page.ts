@@ -28,7 +28,6 @@ export class SEO extends HelperBase {
         await this.verifyPageTitle(pageTitle);
         await this.verifyCanonicalURL(canonicalUrl);
         await this.verifyGenre(genre);
-
     }
 
     private async navigateTo(URL: string) {
