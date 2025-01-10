@@ -9,7 +9,7 @@ export const OG_IMAGE: string = 'https://st.motortrend.com/app/themes/motortrend
 export const OG_IMAGEFallback: string = 'https://d2kde5ohu8qb21.cloudfront.net/files/6725388e3a82490008e66e98/hot-rod-fallback1.jpg';
 export const PAGE_NAME: string = 'MotorTrend';
 export const PAGE_URL: string = '/';
-export const SCHEMAS: string[] = ['WebPage','WebSite','Organization'];
+export const SCHEMAS: string = '{"@context":"https://schema.org","@type":"Organization","logo":{"@type":"ImageObject","height":"400","url":"https://www.motortrend.com/logo/motortrend-og.png","width":"2000"},"name":"MotorTrend","sameAs":["https://www.motortrend.com","https://www.facebook.com/motortrend","https://www.x.com/motortrend","https://www.tiktok.com/@motortrend","https://www.pinterest.com/motortrend/","https://news.google.com/publications/CAAiECWMoBt4reCJiRm9DCctzXoqFAgKIhAljKAbeK3giYkZvQwnLc16?hl=en-US&gl=US&ceid=US%3Aen","https://www.instagram.com/motortrend","https://www.youtube.com/user/MotorTrend/"],"url":"https://www.motortrend.com"}';
 export const SPEAKABLE_XPATH: string[] = ['/html/head/title', '/html/head/meta[@name="description"]/@content'];
 export const SUMMARY_LARGE_IMAGE: boolean = true;
 export const TITLE: string = "MotorTrend: New Cars - Car News and Expert Reviews ";

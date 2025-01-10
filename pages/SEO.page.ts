@@ -18,16 +18,16 @@ export class SEO extends HelperBase {
 
     async VerifyGlobalSEOValues(
         canonicalUrl: string,
-        url: string, 
-        metaDescription: string, 
+        url: string,
+        metaDescription: string,
         pageTitle: string,
-        genre: string
+        schemas: string
     ) {
         await this.navigateTo(url);
         await this.ValidateMetaDescription(metaDescription);
         await this.verifyPageTitle(pageTitle);
         await this.verifyCanonicalURL(canonicalUrl);
-        await this.verifyGenre(genre);
+        await this.verifyGenre(schemas);
     }
 
     private async navigateTo(URL: string) {
@@ -62,8 +62,8 @@ export class SEO extends HelperBase {
         await test.step(`Verify Genre`, async () => {
             await expect(this.webpageScript).not.toBeNull();
             const script = await this.webpageScript.first().allTextContents();
-            console.log(script);
-            await expect(script).toContain('{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"logo\":{\"@type\":\"ImageObject\",\"height\":\"400\",\"url\":\"https://www.motortrend.com/logo/motortrend-og.png\",\"width\":\"2000\"},\"name\":\"MotorTrend\",\"sameAs\":[\"https://www.motortrend.com\",\"https://www.facebook.com/motortrend\",\"https://www.twitter.com/motortrend\",\"https://www.tiktok.com/@motortrend\",\"https://www.pinterest.com/motortrend/\",\"https://news.google.com/publications/CAAiECWMoBt4reCJiRm9DCctzXoqFAgKIhAljKAbeK3giYkZvQwnLc16?hl=en-US&gl=US&ceid=US%3Aen\",\"https://www.instagram.com/motortrend\",\"https://www.youtube.com/user/MotorTrend/\"],\"url\":\"https://www.motortrend.com\"}');
+            //console.log(script);
+            await expect(script).toContain(value)
         });
     }
 }
