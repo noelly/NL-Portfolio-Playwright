@@ -5,7 +5,7 @@ import {
   URL,
   META_DESCRIPTION,
   TITLE,
-  GENRE,
+  SCHEMAS,
 } from '../../data/homepageSEO.data';
 
 test('Homepage - SEO', async ({ page }) => {
@@ -15,5 +15,5 @@ test('Homepage - SEO', async ({ page }) => {
     URL,
     META_DESCRIPTION,
     TITLE,
-    GENRE);
+    SCHEMAS);
 });
