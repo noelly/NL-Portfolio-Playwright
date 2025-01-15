@@ -24,6 +24,8 @@ test('Mock and interceopt API', async ({ page }) => {
     await route.fulfill({
       body: JSON.stringify(responseBody)
     })
+
+    console.log(responseBody);
   });
 
   // add something that would trigger a Ui refresh
