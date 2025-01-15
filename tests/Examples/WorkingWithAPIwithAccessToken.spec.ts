@@ -1,5 +1,5 @@
 import { test, expect, request } from '@playwright/test';
-const tags = require('../data/tags.json');
+const tags = require('../../data/tags.json');
 
 test.beforeEach(async ({ page }) => {
   // 1st:  mock . this as to be done before each test

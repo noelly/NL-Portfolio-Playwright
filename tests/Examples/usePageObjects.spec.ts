@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
-import { NavigationPage } from '../page-objects/navigationPage';
-import { FormLayoursPage } from '../page-objects/formsLayoutsPage';
-import { DatePickerPage } from '../page-objects/datePickerPage';
+import { NavigationPage } from '../../page-objects/navigationPage';
+import { FormLayoursPage } from '../../page-objects/formsLayoutsPage';
+import { DatePickerPage } from '../../page-objects/datePickerPage';
 import { on } from 'events';
 
 test.beforeEach(async ({ page }) => {
@@ -33,4 +33,3 @@ test('Parameterized method', async ({ page }) => {
     await onDatePickersPage.selectCommonDatePickerDateFromToday(5);
     await onDatePickersPage.selectDatePickWithRageFromToday(5, 10);
 });
-

@@ -8,4 +8,3 @@ test('Visual tes Homepage', async ({ page }) => {
   await page.waitForTimeout(10000);
   await expect(page).toHaveScreenshot();
 });
-
