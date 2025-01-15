@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test'
-import { PageManager } from '../page-objects/pageManager.Page';
+import { PageManager } from '../../page-objects/pageManager.Page';
 import { faker } from '@faker-js/faker'
 
 test.beforeEach(async ({ page }) => {
