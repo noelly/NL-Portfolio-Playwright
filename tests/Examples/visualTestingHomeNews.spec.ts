@@ -8,4 +8,3 @@ test('Visual test news index', async ({ page }) => {
   await page.waitForTimeout(10000);
   await expect(page).toHaveScreenshot();
 });
-
