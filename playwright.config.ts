@@ -71,6 +71,12 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'], userAgent: 'QA' },
     },
     {
+      name: 'Examples',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+    {
       name: 'Motortrend',
       use: {
         ...devices['Desktop Chrome'],

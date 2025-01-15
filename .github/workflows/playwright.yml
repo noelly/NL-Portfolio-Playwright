@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: PR Sanity Check
 on:
   schedule:
     - cron:  '0 12 * * 0-5'  # At 12:00 GMT or 5 AM PST

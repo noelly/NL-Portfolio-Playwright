@@ -5,6 +5,10 @@ test.use({
   locale: 'en-US',
 })
 
+test.beforeEach(async ({ page }) => {
+  await page.goto('https://motortrend.com');
+});
+
 test('Mobile Web', async ({ page }) => {
   await page.goto('https://motortrend.com');
 
