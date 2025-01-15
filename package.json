@@ -5,6 +5,7 @@
   "scripts": {
     "motortrend": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "MT": "npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
+    "examples": "npx playwright test tests/Examples/ --headed --project=Examples && npx playwright show-report",
     "test": "npx playwright test --headed --project=Motortrend",
     "headless-test": "npx playwright test --project=Motortrend",
     "show-report": "npx playwright show-report",
