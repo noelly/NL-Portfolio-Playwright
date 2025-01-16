@@ -1,3 +1,5 @@
 [
-  "https://jssdkcdns.mparticle.com/JS/v2/us1-ac2da3623042d84f8b2a726f54717161/config?env=0&plan_id=motortrend"
+  "https://jssdkcdns.mparticle.com/JS/v2/us1-ac2da3623042d84f8b2a726f54717161/config?env=0&plan_id=motortrend",
+  "https://identity.mparticle.com/v1/identify",
+  "https://jssdks.mparticle.com/v3/JS/us1-ac2da3623042d84f8b2a726f54717161/events"
 ]

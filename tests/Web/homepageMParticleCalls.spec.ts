@@ -1,13 +1,17 @@
 import { test, expect } from '@playwright/test';
 import * as fs from 'fs';
 
-test('Verify MParticle call is triggered for Motortrend', async ({ page }) => {
+test('Verify MParticle calls are triggered for MT homepage', async ({ page }) => {
   const requestUrls: string[] = [];
 
   await page.route(/mparticle.com\/*\/.*/, async (route, request) => {
     const url = request.url();
     requestUrls.push(url);
     console.log('Request URL:', url);
+
+    await route.continue();
+    await page.waitForTimeout(1000);
+    await page.unrouteAll({ behavior: 'ignoreErrors' });
   });
 
   await page.goto('https://www.motortrend.com/');
