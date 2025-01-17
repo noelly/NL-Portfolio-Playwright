@@ -3,4 +3,3 @@ export const subMenus = [
   'Latest Videos',
   'The Latest From FOUR WHEELER'
 ];
-
