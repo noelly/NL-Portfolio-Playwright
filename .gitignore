@@ -13,3 +13,6 @@ playwright-report/*
 tests/VisualTesting/*-snapshots/
 /screenshots/
 *.png
+
+/data/requestMparticleUrls.json
+/data/requestUrls.json

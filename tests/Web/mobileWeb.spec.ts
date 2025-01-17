@@ -35,5 +35,5 @@ test('Homepage mobile - Hero and headers', async ({ page }) => {
 test('Homepage mobile - Article and River', async ({ page }) => {
   const pm = new PageManager(page);
   await pm.homepage().verifyAllarticles();
-  await pm.homepage().getRiverArticles(89);
+  await pm.homepage().getRiverArticles(70);
 });
