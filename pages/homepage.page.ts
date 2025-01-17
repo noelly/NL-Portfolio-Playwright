@@ -1,5 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { HelperBase } from "./helperBase.page";
+import * as fs from 'fs/promises';
 
 export class Homepage extends HelperBase {
     readonly heroImage: Locator;
@@ -47,13 +48,16 @@ export class Homepage extends HelperBase {
 
     async verifyAllarticles() {
         const allTitles = await this.allArticles.allTextContents();
-        console.log(allTitles);
+ 
         expect(allTitles).toBeTruthy();
         expect(allTitles.length).toBeGreaterThanOrEqual(30);
 
         for (let i = 0; i < allTitles.length; i++) {
             await expect(this.allHeaders.nth(i)).toBeTruthy();
         }
+        console.log(allTitles);
+        const data = JSON.stringify(allTitles, null, 2);
+        await fs.writeFile('data/allHPTitles.json', data);
     }
 
     async getRiverArticles(count) {
