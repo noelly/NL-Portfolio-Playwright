@@ -43,4 +43,18 @@ export class HelperBase {
     async scrollToTop() {
         await this. page.keyboard.down("PageUp");
     }
+
+    async takeFullScreenshot() {
+        await this.page.screenshot({ path: 'screenshots/screenshot.png' });
+    }
+
+    async takeFullScreenshotBinary() {
+        const buffer = await this.page.screenshot();
+        console.log(buffer.toString('base64'));
+    }
+
+    async takeScreenshotElement() {
+        await this.page.screenshot({ path: 'screenshots/screenshot.png' });
+        await this.vignetteAdClose.screenshot({ path: 'screenshots/Adscreenshot.png' });
+    }
 }
