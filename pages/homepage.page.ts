@@ -36,7 +36,7 @@ export class Homepage extends HelperBase {
 
     async verifyAllheaders(options) {
         console.log(await this.allHeaders.allTextContents());
-        await expect(this.allHeaders).toHaveCount(4);
+        await expect(this.allHeaders).toHaveCount(3);
         await expect(this.allHeaders).toHaveText(options);
 
         for (let i = 0; i < options.length; i++) {
