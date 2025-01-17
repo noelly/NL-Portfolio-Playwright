@@ -47,6 +47,9 @@ export default defineConfig({
     // Emulates the user timezone.[https://en.wikipedia.org/wiki/List_of_tz_database_time_zones]
     timezoneId: 'US/Pacific',
 
+    //Videos
+    video: 'off', // on test failure
+
     // Viewport used for all pages in the context.{ width: 1200, height: 800 }
     // viewport: { width: 1600, height: 1000 },
   },

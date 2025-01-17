@@ -2,6 +2,8 @@ import { test } from '@playwright/test'
 import { PageManager } from '../../pages/pageManager.Page';
 import { subMenus } from '../../data/homepageheadersMT.data';
 
+test.describe.configure({ mode: 'parallel' });
+
 test.beforeEach(async ({ page }) => {
   const pm = new PageManager(page);
   await pm.homepage().navigateTo();
