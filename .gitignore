@@ -14,5 +14,5 @@ tests/VisualTesting/*-snapshots/
 /screenshots/
 *.png
 
-data/requestMparticleUrls.json
-data/requestUrls.json
+/data/requestMparticleUrls.json
+/data/requestUrls.json
