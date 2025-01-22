@@ -28,6 +28,7 @@ data/requestUrls.json
 data/.DS_Store
 library/.DS_Store
 pages/.DS_Store
+tests/.DS_Store
 
 ### Ignore environment configurations ###
 .env
