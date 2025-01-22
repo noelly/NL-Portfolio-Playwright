@@ -1,9 +1,9 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { HelperBase } from "./webenyhelperBase.page";
-import { WebenyArticles } from "./webenyArticles.page";
+import { HelperBase } from "./webinyhelperBase.page";
+import { WebinyArticles } from "./webinyArticles.page";
 import assert from 'assert';
 
-export class WebenyLoginAndMain extends HelperBase {
+export class WebinyLoginAndMain extends HelperBase {
     readonly createArticleButton: Locator
     readonly createCurationButton: Locator
     readonly createVideoButton: Locator
@@ -62,9 +62,9 @@ export class WebenyLoginAndMain extends HelperBase {
         });
 
         await this.createArticleButton.isVisible({ timeout: 10000 });
-        const webenyArticles = new WebenyArticles(this.page);
+        const webinyArticles = new WebinyArticles(this.page);
         await this.viewArticlesButton.click();
-        await webenyArticles.isArticlesPageDisplayed();
+        await webinyArticles.isArticlesPageDisplayed();
     }
 
     async navbigateToViewVideos() {
@@ -77,10 +77,10 @@ export class WebenyLoginAndMain extends HelperBase {
 
     async navigateToCreateArticle() {
         await this.motortrendLogo.click();
-        const webenyArticles = new WebenyArticles(this.page);
+        const webinyArticles = new WebinyArticles(this.page);
         await this.createArticleButton.isVisible({ timeout: 10000 });
         await this.createArticleButton.click();
-        await webenyArticles.isArticlesPageDisplayed();
+        await webinyArticles.isArticlesPageDisplayed();
     }
 
     async navigateToCreateVideo() {

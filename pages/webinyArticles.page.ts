@@ -1,7 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { HelperBase } from "./webenyhelperBase.page";
+import { HelperBase } from "./webinyhelperBase.page";
 
-export class WebenyArticles extends HelperBase {
+export class WebinyArticles extends HelperBase {
     readonly articlesHeader: Locator;
     readonly authorColumn: Locator;
     readonly closeButton: Locator;
@@ -112,7 +112,7 @@ export class WebenyArticles extends HelperBase {
         const statusColumn = await this.page.locator('[class*="cms-aco-list-status"]');
         await this.page.waitForTimeout(3000);
         await statusColumn.nth(1).waitFor({ timeout: 10000 });
-        await statusColumn.locator('[class*="cms-aco-list-status"]',{hasText: status}).isVisible({ timeout: 10000 });
+        await statusColumn.locator('[class*="cms-aco-list-status"]', { hasText: status }).isVisible({ timeout: 10000 });
         await this.page.waitForTimeout(3000);
         expect(await statusColumn.nth(1).textContent()).toContain(status), ({ timeout: 10000 });
         console.log(await this.listOfArticles.allTextContents());

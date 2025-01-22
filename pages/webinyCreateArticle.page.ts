@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { HelperBase } from "./webenyhelperBase.page";
+import { HelperBase } from "./webinyhelperBase.page";
 import { get } from 'http';
 import { console } from 'inspector';
 
@@ -55,7 +55,7 @@ export class CreateArticle extends HelperBase {
         this.canonicalUrlButton = page.locator('[class="article-canonical-url-container"] button');
         this.clearDateTimeButton = page.getByRole('button', { name: 'Clear date/time' });
         this.closeButton = page.getByRole('button', { name: 'Close' });
-        this.confirmButton = page.locator('button', {  hasText: 'Yes, publish!'  });
+        this.confirmButton = page.locator('button', { hasText: 'Yes, publish!' });
         this.contentList = page.locator('[class="mdc-data-table__content"]');
         this.contentTab = page.getByText('Content');
         this.contributorField = page.locator('input[aria-labelledby="textfield-Contributor-label"]').first();
@@ -149,13 +149,13 @@ export class CreateArticle extends HelperBase {
 
         const monthlist = await this.page.locator('[id*="downshift-23"]').locator('li');
         // or 
-    
+
         await expect(monthlist).toHaveCount(12);
         await expect(monthlist).toHaveText(['Light', 'Dark', 'Cosmic', 'Corporate']);
-    
-        await monthlist.filter({ hasText: month}).click();
 
-        await yearField.fill(year); 
+        await monthlist.filter({ hasText: month }).click();
+
+        await yearField.fill(year);
         await hourField.fill(hour);
         await minuteField.fill(minute);
         await secondField.fill(second);

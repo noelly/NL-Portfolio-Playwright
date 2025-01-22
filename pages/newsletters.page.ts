@@ -1,5 +1,5 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { HelperBase } from "./webenyhelperBase.page";
+import { HelperBase } from "./webinyhelperBase.page";
 
 export class Newsletters extends HelperBase {
     readonly pageHeader: Locator;

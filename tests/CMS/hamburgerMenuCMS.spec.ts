@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { PageManager } from '../../pages/webenyPageManager.Page';
+import { PageManager } from '../../pages/webinyPageManager.Page';
 import { drawerOptions, subMenuOptions } from '../../data/drawerMenuOptions.data';
 
 test.describe('Hamburger Menu', () => {
@@ -7,26 +7,26 @@ test.describe('Hamburger Menu', () => {
 
   test.beforeEach(async ({ page }) => {
     pm = new PageManager(page);
-    await pm.webenyMain().navigateToCMS();
+    await pm.webinyMain().navigateToCMS();
   });
 
   test('Verify all menus within the hamburger drawer', async () => {
-    await pm.webenyHamburger().validateDrawerOptions(drawerOptions);
+    await pm.webinyHamburger().validateDrawerOptions(drawerOptions);
   });
 
   test('Verify all submenus of the hamburger drawer', async () => {
-    await pm.webenyHamburger().validateDrawerSubMenus(subMenuOptions);
+    await pm.webinyHamburger().validateDrawerSubMenus(subMenuOptions);
   });
 
   test('Verify navigating to the image collection', async () => {
-    await pm.webenyHamburger().navigateToSubMenu('Image Collections');
+    await pm.webinyHamburger().navigateToSubMenu('Image Collections');
   });
 
   test('Verify navigating to the articles list section', async () => {
-    await pm.webenyHamburger().navigateToSubMenu('Articles');
+    await pm.webinyHamburger().navigateToSubMenu('Articles');
   });
 
   test('Verify navigating to the video playlists section', async () => {
-    await pm.webenyHamburger().navigateToSubMenu('Video Playlists');
+    await pm.webinyHamburger().navigateToSubMenu('Video Playlists');
   });
 });
