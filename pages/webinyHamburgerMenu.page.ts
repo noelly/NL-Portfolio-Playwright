@@ -1,7 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
-import { HelperBase } from "./webenyhelperBase.page";
+import { HelperBase } from "./webinyhelperBase.page";
 
-export class WebenyHamburgerMenu extends HelperBase {
+export class WebinyHamburgerMenu extends HelperBase {
 
     readonly hamburgerMenuButton: Locator;
     readonly menuDrawer: Locator

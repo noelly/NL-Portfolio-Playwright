@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { PageManager } from '../../pages/webenyPageManager.Page';
+import { PageManager } from '../../pages/webinyPageManager.Page';
 import {
   testData,
   Types,
@@ -16,12 +16,12 @@ test.describe('Article by type', () => {
 
   test.beforeEach(async ({ page }) => {
     pm = new PageManager(page);
-    await pm.webenyMain().navigateToCMS();
+    await pm.webinyMain().navigateToCMS();
   });
 
   test(`Checking for any existing test pages`, async () => {
     await test.step('Removing any existing test pages', async () => {
-      await pm.webenyMain().navigateToViewArticles();
+      await pm.webinyMain().navigateToViewArticles();
       await pm.articleList().cleanupPagesByAuthor(testData.author);
     });
   });
@@ -49,7 +49,7 @@ test.describe('Article by type', () => {
     test(`Validate creating a "${randomType}" article`, async () => {
 
       await test.step('Navigate to the create article page', async () => {
-        await pm.webenyMain().navigateToCreateArticle();
+        await pm.webinyMain().navigateToCreateArticle();
       });
 
       await test.step('Proceed with the article creation', async () => {
@@ -68,7 +68,7 @@ test.describe('Article by type', () => {
   }
 
   test(`Cleanup any existing test pages`, async () => {
-    await pm.webenyMain().navigateToViewArticles();
+    await pm.webinyMain().navigateToViewArticles();
     await pm.articleList().cleanupPagesByAuthor(testData.author);
   });
 });

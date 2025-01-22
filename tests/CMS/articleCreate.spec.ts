@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { PageManager } from '../../pages/webenyPageManager.Page';
+import { PageManager } from '../../pages/webinyPageManager.Page';
 import { testData, randomData } from '../../data/createArticle.data';
 
 test.describe('Article', () => {
@@ -8,17 +8,17 @@ test.describe('Article', () => {
 
   test.beforeEach(async ({ page }) => {
     pm = new PageManager(page);
-    await pm.webenyMain().navigateToCMS();
+    await pm.webinyMain().navigateToCMS();
   });
 
   test('Creating a formatted article', async () => {
     await test.step('Pre-requisite: clean up any existing test pages', async () => {
-      await pm.webenyMain().navigateToViewArticles();
+      await pm.webinyMain().navigateToViewArticles();
       await pm.articleList().cleanupPagesByTitle(testData.title);
     });
 
     await test.step('Navigate to the create article page', async () => {
-      await pm.webenyMain().navigateToCreateArticle();
+      await pm.webinyMain().navigateToCreateArticle();
     });
 
     await test.step('Proceed with the article creation', async () => {
@@ -36,7 +36,7 @@ test.describe('Article', () => {
     });
 
     await test.step('Verify the article created is listed within the article list', async () => {
-      await pm.webenyMain().navigateToViewArticles();
+      await pm.webinyMain().navigateToViewArticles();
       await pm.createArticle().verifyNewArticleInArticleList(testData.title, testData.author);
     });
 

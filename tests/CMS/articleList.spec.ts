@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { PageManager } from '../../pages/webenyPageManager.Page';
+import { PageManager } from '../../pages/webinyPageManager.Page';
 import { status, types, authors } from '../../data/articleList.data';
 
 const author = 'QA Automation'; //Don't use generic words like test
@@ -10,8 +10,8 @@ test.describe('Article list', () => {
 
   test.beforeEach(async ({ page }) => {
     pm = new PageManager(page);
-    await pm.webenyMain().navigateToCMS();
-    await pm.webenyMain().navigateToViewArticles();
+    await pm.webinyMain().navigateToCMS();
+    await pm.webinyMain().navigateToViewArticles();
   });
 
   test('Verify the article list', async () => {
