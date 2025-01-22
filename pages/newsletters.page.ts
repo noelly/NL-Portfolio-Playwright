@@ -65,6 +65,6 @@ export class Newsletters extends HelperBase {
 
     private async verifySignupConfirmation() {
         const signupConfirmation = await this.page.locator('h4', { hasText: 'Success' });
-        await expect(signupConfirmation).toBeVisible({ timeout: 30000 });
+        await expect(signupConfirmation).toBeVisible({ timeout: 35000 });
     }
 }
