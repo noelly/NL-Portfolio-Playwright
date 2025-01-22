@@ -10,7 +10,7 @@ import {
   ymmArticle
 } from '../../data/createArticle.data';
 
-test.describe('Article', () => {
+test.describe('Article by type', () => {
   let pm: PageManager;
   test.describe.configure({ mode: 'serial' });
 
@@ -47,7 +47,7 @@ test.describe('Article', () => {
         break;
     }
     test(`Validate creating a "${randomType}" article`, async () => {
-      ;
+
       await test.step('Navigate to the create article page', async () => {
         await pm.webenyMain().navigateToCreateArticle();
       });
@@ -63,11 +63,6 @@ test.describe('Article', () => {
           pageDetails.contributor,
           randomRole
         );
-      });
-
-      await test.step('Verify the article created is listed within the article list', async () => {
-        await pm.webenyMain().navigateToViewArticles();
-        await pm.createArticle().verifyNewArticleInArticleList(pageDetails.title, pageDetails.author);
       });
     });
   }

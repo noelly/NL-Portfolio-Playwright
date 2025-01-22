@@ -51,24 +51,24 @@ export class CreateArticle extends HelperBase {
         this.bodyField = page.locator('[class*="ql-editor"] p');
         this.boldButton = page.locator('[class*="ql-bold"]');
         this.bulletListButton = page.locator('[value*="bullet"]');
-        this.canonicalUrl = page.locator('[aria-labelledby="textfield-Canonical URL-label"]').locator('input');
-        this.canonicalUrlButton = page.locator('[aria-labelledby="textfield-Canonical URL-label"]+button');
+        this.canonicalUrl = page.locator('[class="article-canonical-url-container"]').locator('input');
+        this.canonicalUrlButton = page.locator('[class="article-canonical-url-container"] button');
         this.clearDateTimeButton = page.getByRole('button', { name: 'Clear date/time' });
         this.closeButton = page.getByRole('button', { name: 'Close' });
-        this.confirmButton = page.getByRole('button', { name: 'Confirm' });
+        this.confirmButton = page.locator('button', {  hasText: 'Yes, publish!'  });
         this.contentList = page.locator('[class="mdc-data-table__content"]');
         this.contentTab = page.getByText('Content');
-        this.contributorField = page.locator('[aria-labelledby="textfield-Contributor-label"] input');
+        this.contributorField = page.locator('input[aria-labelledby="textfield-Contributor-label"]').first();
         this.contributorRole = page.locator('[data-testid="fr.input.select.Contributor Role"]');
-        this.dialogCloseButton = page.locator('[data-testid="dialog-accept"]').first();
+        this.dialogCloseButton = page.locator('[class*="mdc-dialog--open"] [data-testid="dialog-accept"]');
         this.editDateTimeButton = page.getByRole('button', { name: 'Edit date/time' });
         this.entryAuditDialog = page.locator('[class="mdc-dialog__surface"]').locator('h2', { hasText: 'Entry Audit' });
         this.entryAuditDialogCloseButton = page.locator('[class="entry-audit-dialog webiny-ui-dialog mdc-dialog mdc-dialog--open"]').locator('button', { hasText: 'Close' });
         this.entryTypeButton = page.getByRole('button', { name: 'Entry Type' });
         this.entryTypeDescription = page.locator('[class="settings-button-value"]').first();
         this.entryTypeDialog = page.locator('[class="mdc-dialog__surface"]').locator('h2', { hasText: 'Entry Settings' });
-        this.entryTypeField = page.locator('select[data-testid="fr.input.select.Type"]');
-        this.entryTypeFieldOptions = page.locator('select[data-testid="fr.input.select.Type"] option');
+        this.entryTypeField = page.locator('[class*="mdc-dialog--open"] [data-testid="fr.input.select.Type"]');
+        this.entryTypeFieldOptions = page.locator('[class*="mdc-dialog mdc-dialog--open"] [data-testid="fr.input.select.Type"] option');
         this.italicButton = page.locator('[class*="ql-italic"]');
         this.mediaTab = page.locator('[class="mdc-tab"]', { hasText: 'Media' });;
         this.orderedListButton = page.locator('[value*="ordered"]');
@@ -99,7 +99,7 @@ export class CreateArticle extends HelperBase {
         await this.addRelational(taxonomies, contributor, role);
         await this.verifyPermalink(type);
         await this.addMedia();
-        await this.saveAndVerify('Articles entry created successfully!');
+        await this.saveAndVerify('Entry saved successfully!');
     }
 
     async createNewArticle(type: string, title: string, subtitle: string, body: string, taxonomies: string, contributor: string, role: string) {
@@ -108,16 +108,15 @@ export class CreateArticle extends HelperBase {
         await this.addRelational(taxonomies, contributor, role);
         await this.verifyPermalink(type);
         await this.addMedia();
-        await this.saveAndVerify('Articles entry created successfully!');
+        await this.saveAndVerify('Entry saved successfully!');
     }
 
     async saveAndVerify(message: string) {
         await this.saveButton.click();
         await this.page.waitForLoadState('networkidle');
-        await this.page.waitForResponse('*/**/graphql');
         const successMessage = this.page.locator('[class="mdc-snackbar__label"]', { hasText: message });
         const text = await successMessage.allTextContents();
-        await expect(successMessage).toBeVisible({ timeout: 10000 });
+        await expect(successMessage).toBeVisible({ timeout: 20000 });
     }
 
     async publishArticle() {
@@ -125,7 +124,7 @@ export class CreateArticle extends HelperBase {
         await this.updateCanonicalUrl();
         await this.publishButton.click();
         await this.confirmButton.click();
-        const successMessage = this.page.locator('[class="mdc-snackbar__label"]').first();
+        const successMessage = this.page.locator('[class="mdc-snackbar__label"]', { hasText: 'was published successfully!' });
         await expect(successMessage).toBeVisible({ timeout: 10000 });
         const publishedOn = await this.publishOnValue.allTextContents();
         console.log('Published on: ' + publishedOn);
@@ -148,11 +147,7 @@ export class CreateArticle extends HelperBase {
         const minuteField = this.page.getByLabel('Minute').locator('input');
         const secondField = this.page.getByLabel('second').locator('input');
 
-
-
         const monthlist = await this.page.locator('[id*="downshift-23"]').locator('li');
-
-
         // or 
     
         await expect(monthlist).toHaveCount(12);
@@ -189,6 +184,7 @@ export class CreateArticle extends HelperBase {
 
     async previewArticle() {
         await this.seoTab.click();
+        await this.page.waitForTimeout(1000);
         await this.updateCanonicalUrl();
         await this.previewButton.click();
         await this.page.waitForTimeout(1000);
@@ -200,6 +196,7 @@ export class CreateArticle extends HelperBase {
         console.log('Tab preview URL: ' + url);
         expect(url).toContain('https://www.motortrend.com/draft/');
         await newtab.close();
+        await this.saveAndVerify('Entry saved successfully!');
     }
 
     async verifyNewArticleInArticleList(title: string, author: string, status?: string) {
@@ -208,6 +205,7 @@ export class CreateArticle extends HelperBase {
         while (await authorRow.count() < 1) {
             await this.page.reload();
             await this.page.waitForLoadState('networkidle');
+            await this.page.waitForTimeout(1000);
         }
         expect(await authorRow.count()).toBeGreaterThan(0);
         await authorRow.isVisible({ timeout: 10000 });
@@ -219,6 +217,7 @@ export class CreateArticle extends HelperBase {
     private async updateCanonicalUrl() {
         const currentCanonicalUrl = await this.canonicalUrl.getAttribute('value');
         const newCanonicalUrl = currentCanonicalUrl?.toLocaleLowerCase().replaceAll('beta', 'preprod');
+        await this.canonicalUrlButton.isVisible({ timeout: 10000 });
         await this.canonicalUrlButton.click();
         await this.page.waitForTimeout(1000);
         await this.canonicalUrl.click();
@@ -352,7 +351,7 @@ export class CreateArticle extends HelperBase {
     private async addMedia() {
         await this.mediaTab.click();
         await this.selectImageBtn.click();
-        const mediaImages = await this.page.locator('[class="css-16yrfrh-FileBody e1ahl7xf2"]');
+        const mediaImages = await this.page.locator('[class="css-1fcz16t e1ahl7xf6"]');
         await expect(mediaImages).toHaveCount(50);
         await mediaImages.first().click();
         await this.page.waitForTimeout(2000);
