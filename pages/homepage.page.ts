@@ -68,6 +68,7 @@ export class Homepage extends HelperBase {
     }
 
     async selectJoinNewsletter() {
+        await this.scrollToBottom();
         await this.page.locator('[data-id="join-newsletter"]').click();
         await this.closeVignetteAd();
     }

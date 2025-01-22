@@ -33,6 +33,7 @@ export class SEO extends HelperBase {
     private async navigateTo(URL: string) {
         await test.step(`Navigate to ${URL}`, async () => {
             await this.page.goto(URL);
+
             await this.waitForNumberofSeconds(2);
         });
     }
