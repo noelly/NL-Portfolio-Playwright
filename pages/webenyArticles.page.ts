@@ -19,7 +19,7 @@ export class WebenyArticles extends HelperBase {
 
     constructor(page: Page) {
         super(page);
-        this.articlesHeader = page.locator('[class="css-11i8xqn-ModelName efbsdge0"]');
+        this.articlesHeader = page.locator('[class="css-8yntog efbsdge1"]');
         this.authorColumn = page.locator('[class*="cms-aco-list-createdBy"]');
         this.closeButton = page.getByRole('button', { name: 'Close' });
         this.confirmButton = page.getByRole('button', { name: 'Confirm' });
@@ -29,9 +29,9 @@ export class WebenyArticles extends HelperBase {
         this.filterByAuthor = page.locator('[placeholder="Filter by user"]');
         this.filterByStatus = page.locator('select[tabindex="0"]', { hasText: 'Filter by Status' });
         this.filterByType = page.locator('select[tabindex="0"]', { hasText: 'Filter by Type' });
-        this.listOfArticles = page.locator('[class="css-ojtt4q-RowText eqame0c3 mdc-typography--subtitle2"]');
+        this.listOfArticles = page.locator('[class="css-l8l8b8 eqame0c0 mdc-typography--subtitle2"]');
         this.statusColumn = page.locator('[class*="cms-aco-list-status"]');
-        this.successMessage = page.locator('[class="webiny-ui-dialog__title mdc-dialog__title"]', { hasText: 'Delete entries' });
+        this.successMessage = page.locator('[class="webiny-ui-dialog__title mdc-dialog__title"]', { hasText: 'Trash entries' });
         this.userDropDown = page.locator('ul li');
     }
 
@@ -69,12 +69,11 @@ export class WebenyArticles extends HelperBase {
         await this.deleteButton.nth(3).click();
         await this.confirmButton.click();
         await this.successMessage.isVisible({ timeout: 20000 });
-        await expect(this.successMessage).toHaveText('Delete entries', { timeout: 10000 });
+        await expect(this.successMessage).toHaveText('Trash entries', { timeout: 10000 });
         await this.closeButton.click();
     }
 
     async cleanupPagesByTitle(title: string) {
-        await this.page.waitForLoadState('networkidle');
         await this.page.waitForTimeout(2000);
         const titleRow = this.page.locator('[class="rmwc-data-table__row mdc-data-table__row"]', { hasText: title }).first();
         if (await titleRow.isVisible({ timeout: 2000 })) {
@@ -94,7 +93,7 @@ export class WebenyArticles extends HelperBase {
         await this.deleteButton.nth(3).click();
         await this.confirmButton.click();
         await this.successMessage.isVisible({ timeout: 20000 });
-        await expect(this.successMessage).toHaveText('Delete entries', { timeout: 10000 });
+        await expect(this.successMessage).toHaveText('Trash entries', { timeout: 10000 });
         await this.closeButton.click();
     }
 

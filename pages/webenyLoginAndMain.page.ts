@@ -1,6 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { HelperBase } from "./webenyhelperBase.page";
 import { WebenyArticles } from "./webenyArticles.page";
+import assert from 'assert';
 
 export class WebenyLoginAndMain extends HelperBase {
     readonly createArticleButton: Locator
@@ -40,7 +41,7 @@ export class WebenyLoginAndMain extends HelperBase {
 
     async navigateToCMS() {
         await this.page.goto('https://cms.dev.motortrend.com/');
-        await this.waitForPageLoad();
+        // await this.waitForPageLoad();
         await this.motortrendLogo.isVisible({ timeout: 15000 });
     }
 
@@ -54,6 +55,13 @@ export class WebenyLoginAndMain extends HelperBase {
 
     async navigateToViewArticles() {
         await this.motortrendLogo.click();
+
+        this.page.on('dialog', async dialog => {
+            assert(dialog.type() === 'beforeunload');
+            await dialog.accept();
+        });
+
+        await this.createArticleButton.isVisible({ timeout: 10000 });
         const webenyArticles = new WebenyArticles(this.page);
         await this.viewArticlesButton.click();
         await webenyArticles.isArticlesPageDisplayed();

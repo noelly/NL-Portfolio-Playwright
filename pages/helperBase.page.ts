@@ -1,7 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 
 export class HelperBase {
-
     readonly page: Page
     readonly vignetteAds: Locator;
     readonly vignetteAdClose: Locator;

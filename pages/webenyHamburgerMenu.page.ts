@@ -11,7 +11,7 @@ export class WebenyHamburgerMenu extends HelperBase {
         super(page);
         this.hamburgerMenuButton = page.locator('button[data-testid="apps-menu"]');
         this.menuDrawer = page.locator('aside[class*=" mdc-drawer--open"]');
-        this.sidebarContainerHeader = page.locator('[class="css-11i8xqn-ModelName efbsdge0"]');
+        this.sidebarContainerHeader = page.locator('[class="css-8yntog efbsdge1"]');
     }
 
     async openTheHamburgerMenu() {
@@ -22,30 +22,30 @@ export class WebenyHamburgerMenu extends HelperBase {
     }
 
     async openTheHamburgerSubMenu() {
-        const optionslist = await this.page.locator('[class*="mdc-drawer__content"] [class="mdc-list-item"]');
+        const optionslist = await this.page.locator('[class*="mdc-deprecated-list-item__meta"] button [class="mdc-icon-button__ripple"]');
         for (const row of await optionslist.all()) {
             await row.scrollIntoViewIfNeeded();
             await row.click();
-            await this.waitForNumberofSeconds(0.5);
+            await this.waitForNumberofSeconds(1);
         }
     }
 
     async validateDrawerOptions(options: string[]) {
-        const optionslist = await this.page.locator('[class*="mdc-drawer__content"] [class="mdc-list-item"]');
+        const optionslist = await this.page.locator('[class="css-87lb9q mdc-drawer__content"] li');
         await expect(optionslist).toHaveCount(6);
         console.log(await optionslist.allTextContents());
         await expect(optionslist).toHaveText(options);
     }
 
     async validateDrawerSubMenus(options: string[]) {
-        const subMenulist = await this.page.locator('[class="css-1anqzvt-submenuItems mdc-list-item"] a');
+        const subMenulist = await this.page.locator('a[class="css-1po6wm7"]');
         if (await this.menuDrawer.isHidden({ timeout: 10000 })) {
             await this.openTheHamburgerMenu();
-            await this.waitForNumberofSeconds(0.5);
+            await this.waitForNumberofSeconds(1);
 
             if (await subMenulist.isHidden({ timeout: 10000 })) {
                 await this.openTheHamburgerSubMenu();
-                await this.waitForNumberofSeconds(0.5);
+                await this.waitForNumberofSeconds(1);
             }
         }
         await expect(subMenulist).toHaveCount(38);
@@ -54,7 +54,7 @@ export class WebenyHamburgerMenu extends HelperBase {
     }
 
     async navigateToSubMenu(name: string) {
-        const subMenulist = await this.page.locator('[class="css-1anqzvt-submenuItems mdc-list-item"] a');
+        const subMenulist = await this.page.locator('a[class="css-1po6wm7"]');
         if (await this.menuDrawer.isHidden({ timeout: 10000 })) {
             await this.openTheHamburgerMenu();
             await this.waitForNumberofSeconds(0.5);
