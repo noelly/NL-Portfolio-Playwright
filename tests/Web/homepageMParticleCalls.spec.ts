@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { PageManager } from '../../pages/pageManager.Page';
 import * as fs from 'fs';
 
 test('Verify MParticle calls are triggered for MT homepage', async ({ page }) => {
@@ -14,7 +15,8 @@ test('Verify MParticle calls are triggered for MT homepage', async ({ page }) =>
     await page.unrouteAll({ behavior: 'ignoreErrors' });
   });
 
-  await page.goto('https://www.motortrend.com/');
+  const pm = new PageManager(page);
+  await pm.homepage().navigateTo();
 
 
   // Export the list of request URLs to a data file

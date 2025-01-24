@@ -1,9 +1,12 @@
 import { defineConfig, devices } from '@playwright/test';
+import type { TestOptions } from './test-options';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
+
+require('dotenv').config();
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
@@ -11,7 +14,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig<TestOptions>({
   timeout: 60000,
   globalTimeout: 600000,
   testDir: './tests',
@@ -28,7 +31,18 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    // baseURL: 'http://127.0.0.1:3000',
+    // baseURL: 'http://localhost:4200',
+    globalsQaUrl: 'https://www.globalsqa.com/demo-site/draganddrop/',
+
+    // using DEV=1 or STAGING=1 environment variables
+    baseURL: process.env.DEV === '1' ? 'http://localhost:4201' :
+    process.env.STAGING === '1' ? 'http://localhost:4202' :
+    'http://localhost:4200',
+
+    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
+    actionTimeout: 0,
+    /* Base URL to use in actions like `await page.goto('/')`. */
+
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -83,6 +97,16 @@ export default defineConfig({
       name: 'Motortrend',
       use: {
         ...devices['Desktop Chrome'],
+        //baseURL: 'http://www.motortrend.com',
+        viewport: { width: 1600, height: 1000 },
+        userAgent: 'QA', // required to bypass akamai Access Denied outside of VPN
+        colorScheme: 'dark',
+      },
+    },
+    {
+      name: 'MT',
+      use: {
+        ...devices['Desktop Chrome'],
         viewport: { width: 1600, height: 1000 },
         userAgent: 'QA', // required to bypass akamai Access Denied outside of VPN
         colorScheme: 'dark',
@@ -96,6 +120,15 @@ export default defineConfig({
         userAgent: 'QA',
       },
       dependencies: ['setup'], retries: 1, fullyParallel: true,
+    },
+    {
+      name: 'dev',
+      use: {
+        ...devices['Desktop Chrome'], userAgent: 'QA',
+        baseURL: 'http://localhost:4200',
+        viewport: { width: 1600, height: 1000 },
+      },
+
     },
 
     /* Test against mobile viewports. */
