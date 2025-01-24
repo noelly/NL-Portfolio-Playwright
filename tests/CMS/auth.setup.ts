@@ -12,7 +12,7 @@ setup('Verifying Login to Webiny', async ({ page }) => {
     });
 
     await test.step(`Login with user ${testUser.email}`, async () => {
-        await pm.webinyMain().loginWithUser(testUser.email, testUser.Password);
+        await pm.webinyMain().loginWithUser(testUser.email!, testUser.Password!);
     });
 
     await test.step(`Store access token`, async () => {

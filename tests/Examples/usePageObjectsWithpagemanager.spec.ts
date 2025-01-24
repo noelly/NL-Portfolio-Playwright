@@ -3,7 +3,7 @@ import { PageManager } from '../../page-objects/pageManager.Page';
 import { faker } from '@faker-js/faker'
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4200');
+    await page.goto('/'); // with baseURL
 });
 
 test('navigate to form page', async ({ page }) => {

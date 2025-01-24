@@ -17,7 +17,7 @@ export class Homepage extends HelperBase {
     }
 
     async navigateTo() {
-        await this.page.goto('https://www.motortrend.com');
+        await this.page.goto(process.env.URL!);
         await this.waitForNumberofSeconds(2);
     }
 
