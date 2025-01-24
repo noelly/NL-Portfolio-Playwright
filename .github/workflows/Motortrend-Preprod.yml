@@ -1,11 +1,5 @@
-name: MT PROD
+name: MT PREPROD
 on:
-  schedule:
-    - cron:  '0 12 * * 0-5'  # At 12:00 GMT or 5 AM PST
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
       inputs:
         browser:
@@ -44,4 +38,4 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test tests/Web/ --project=Motortrend
+      run: URL=https://preprod.motortrend.com npx playwright test tests/Web/ --project=MT

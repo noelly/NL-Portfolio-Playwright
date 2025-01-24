@@ -97,7 +97,7 @@ export default defineConfig<TestOptions>({
       name: 'Motortrend',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'http://www.motortrend.com',
+        //baseURL: 'http://www.motortrend.com',
         viewport: { width: 1600, height: 1000 },
         userAgent: 'QA', // required to bypass akamai Access Denied outside of VPN
         colorScheme: 'dark',
