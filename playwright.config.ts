@@ -104,6 +104,15 @@ export default defineConfig<TestOptions>({
       },
     },
     {
+      name: 'MT',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1600, height: 1000 },
+        userAgent: 'QA', // required to bypass akamai Access Denied outside of VPN
+        colorScheme: 'dark',
+      },
+    },
+    {
       name: 'CMS',
       use: {
         ...devices['Desktop Chrome'],
