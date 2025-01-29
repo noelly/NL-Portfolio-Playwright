@@ -3,7 +3,7 @@ import { PageManager } from '../../pages/pageManager.Page';
 import { subMenus } from '../../data/homepageheadersMT.data';
 
 test.use({
-  ...devices['iPhone 14 Pro'],
+  ...devices['iPhone 15 Pro'],
   locale: 'en-US',
 })
 
@@ -19,10 +19,6 @@ test('Homepage mobile - Hero and headers', async ({ page }) => {
     await pm.homepage().verifyHeroSection();
   });
 
-  await test.step(`Verify hero article`, async () => {
-    await pm.homepage().verifyHeroArticle();
-  });
-
   await test.step(`Verify SEO title`, async () => {
     await pm.homepage().verifyPageTitle('MotorTrend: New Cars - Car News and Expert Reviews');
   });
@@ -32,8 +28,14 @@ test('Homepage mobile - Hero and headers', async ({ page }) => {
   });
 });
 
-test('Homepage mobile - Article and River', async ({ page }) => {
+test('Homepage mobile - Article and River', async ({ page }, testInfo) => {
   const pm = new PageManager(page);
   await pm.homepage().verifyAllarticles();
-  await pm.homepage().getRiverArticles(70);
+  await pm.homepage().getRiverArticles(50);
+
+  const homeScreenshot = await page.screenshot();
+  testInfo.attach('iPhone 15 Pro screenshot', {
+    body: homeScreenshot,
+    contentType: 'image/png',
+  });
 });

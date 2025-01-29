@@ -1,5 +1,5 @@
 ### Reports
-/test-results/
+
 playwright-report
 playwright-report/*
 /playwright-report/*
@@ -12,13 +12,13 @@ playwright-report/*
 ### users
 .auth
 .auth/user.json
+.env
 
 ### data files
 
-/data/requestMparticleUrls.json
 data/allHPTitles.json
-/data/requestUrls.json
 data/requestUrls.json
+data/requestMparticleUrls.json
 
 ### .DS_store files
 
@@ -30,13 +30,12 @@ library/.DS_Store
 pages/.DS_Store
 tests/.DS_Store
 
-### Ignore environment configurations ###
-.env
+### environment configurations ###
 /logs
 
 node_modules
 node_modules/
 screenshots/*.png
-tests/VisualTesting/*-snapshots/
 /screenshots/
-*.png
+GeolocationA.png
+GeolocationB.png

@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { PageManager } from '../../pages/pageManager.Page';
 import * as fs from 'fs/promises';
 
 test('Verify Network calls is triggered for Motortrend', async ({ page }) => {
@@ -14,8 +13,8 @@ test('Verify Network calls is triggered for Motortrend', async ({ page }) => {
     await page.waitForTimeout(1000);
     await page.unrouteAll({ behavior: 'ignoreErrors' });
   });
-  const pm = new PageManager(page);
-  await pm.homepage().navigateTo();
+
+  await page.goto('https://www.motortrend.com/');
 
   // Export the list of request URLs to a data file
   const data = JSON.stringify(requestUrls, null, 2);

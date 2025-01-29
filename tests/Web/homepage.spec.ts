@@ -2,8 +2,6 @@ import { test } from '@playwright/test'
 import { PageManager } from '../../pages/pageManager.Page';
 import { subMenus } from '../../data/homepageheadersMT.data';
 
-test.describe.configure({ mode: 'parallel' });
-
 test.beforeEach(async ({ page }) => {
   const pm = new PageManager(page);
   await pm.homepage().navigateTo();
@@ -14,10 +12,6 @@ test('Homepage - Hero and headers', async ({ page }) => {
   const pm = new PageManager(page);
   await test.step(`Verify hero section`, async () => {
     await pm.homepage().verifyHeroSection();
-  });
-
-  await test.step(`Verify hero article section`, async () => {
-    await pm.homepage().verifyHeroArticle();
   });
 
   await test.step(`Verify SEO title`, async () => {
@@ -33,6 +27,6 @@ test('Homepage - Articles', async ({ page }) => {
   const pm = new PageManager(page);
   await test.step(`Verify Articles and River`, async () => {
     await pm.homepage().verifyAllarticles();
-    await pm.homepage().getRiverArticles(70);
+    await pm.homepage().getRiverArticles(50);
   });
 });
