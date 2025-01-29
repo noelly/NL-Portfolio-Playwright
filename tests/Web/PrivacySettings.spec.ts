@@ -13,28 +13,20 @@ test.use({
 })
 
 test('California - Privacy Settings', async ({ page }) => {
+  const pm = new PageManager(page);
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-
-  const DoNotSell = await page.getByText('Do Not Sell or Share My Personal Information').first();
-
-  if (await DoNotSell.isVisible()) {
-    await DoNotSell.click();
-  }
-  await page.waitForTimeout(2000);
-  await page.screenshot({ path: 'GeolocationA.png' });
+  await pm.homepage().verifyPrivacyPolicy();
 });
 
+test.use({
+  geolocation: { latitude: 50.9245541, longitude: 5.2435062 },
+  permissions: ['geolocation'],
+})
 
-test('GDPR - privacy Settings EU', async ({ page, context }) => {
+test('EU - Privacy Settings ', async ({ page, context }) => {
+  const pm = new PageManager(page);
   const coords = { latitude: 50.9245541, longitude: 5.2435062 };
   context.setGeolocation(coords);
-
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-
-  const DoNotSell = await page.getByText('Do Not Sell or Share My Personal Information').first();
-  if (await DoNotSell.isVisible()) {
-    await DoNotSell.click();
-  }
-  await page.waitForTimeout(2000);
-  await page.screenshot({ path: 'GeolocationB.png' });
+  await pm.homepage().verifyPrivacyPolicy();
 });

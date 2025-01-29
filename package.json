@@ -8,6 +8,7 @@
     "mt-preprod": "URL=https://preprod.motortrend.com npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "MT": "URL=https://www.motortrend.com npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
     "MT-preprod": "URL=https://preprod.motortrend.com npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
+    "VT": "npx playwright test tests/VT/ --project=Motortrend && npx playwright show-report",
     "homepage-preprod": "URL=https://preprod.motortrend.com npm run test tests/Web/homepage.spec.ts",
     "examples": "npx playwright test tests/Examples/ --headed --project=Examples && npx playwright show-report",
     "test": "npx playwright test --headed --project=Motortrend",

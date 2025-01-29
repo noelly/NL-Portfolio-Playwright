@@ -72,4 +72,23 @@ export class Homepage extends HelperBase {
         await this.page.locator('[data-id="join-newsletter"]').click();
         await this.closeVignetteAd();
     }
+
+    async verifyPrivacyPolicy() {
+        const DoNotSell = await this.page.getByText('Do Not Sell or Share My Personal Information').first();
+        const CookieSettings = await this.page.getByText('Cookie Settings').first();
+
+        if (await DoNotSell.isVisible()) {
+            await DoNotSell.click();
+            console.log('Do Not Sell or Share My Personal Information selected');
+            await this.closeVignetteAd();
+            await this.page.waitForTimeout(2000);
+            await this.page.screenshot({ path: 'GeolocationA.png' });
+        } else {
+            await CookieSettings.click();
+            console.log('Cookie settings selected');
+            await this.closeVignetteAd();
+            await this.page.waitForTimeout(2000);
+            await this.page.screenshot({ path: 'GeolocationB.png' });
+        }
+    }
 }
