@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "motortrend": "URL='https://www.motortrend.com npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
+    "motortrend": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "mt": "URL=https://www.motortrend.com npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "mt-preprod": "URL=https://preprod.motortrend.com npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
     "MT": "URL=https://www.motortrend.com npx playwright test tests/Web/ --project=Motortrend && npx playwright show-report",
