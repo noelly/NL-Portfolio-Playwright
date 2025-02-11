@@ -48,7 +48,7 @@ export class WebinyHamburgerMenu extends HelperBase {
                 await this.waitForNumberofSeconds(1);
             }
         }
-        await expect(subMenulist).toHaveCount(38);
+        await expect(subMenulist).toHaveCount(40);
         console.log(await subMenulist.allTextContents());
         await expect(subMenulist).toHaveText(options);
     }
