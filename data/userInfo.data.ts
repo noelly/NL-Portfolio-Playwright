@@ -1,8 +1,11 @@
 
 export const testUser = {
-    // email: '',
-    // Password: '',
 
-    email: process.env.CMS_email,
-    Password: process.env.CMS_password,
-  };
+  email: 'qatestauto@motortrend.com',
+  Password: 'Hallloween2024',
+
+  // uncomment when using credentials from .env file
+
+  // email: process.env.CMS_email,
+  // Password: process.env.CMS_password,
+};
