@@ -32,3 +32,4 @@ test.describe("Sauce Demo Home Page", () => {
     await checkoutOverview.finishBtn.click();
   })
 })
+

@@ -38,4 +38,4 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: URL=https://www.motortrend.com npx playwright test tests/Web/ --project=MT
+      run: npm run CMS
