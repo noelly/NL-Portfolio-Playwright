@@ -1,0 +1,41 @@
+name: CMS dev
+on:
+  workflow_dispatch:
+      inputs:
+        browser:
+          description: 'Browser'
+          required: true
+          default: 'firefox'
+          type: choice
+          options:
+            - 'chrome'
+            - 'firefox'
+            - 'safari'
+        Env:
+          type: choice
+          description: 'Test Environment'     
+          required: true
+          default: 'prod'
+          options:
+            - 'preprod'
+            - 'prod'
+            - 'custom'
+        vercel:
+            description: 'URL'     
+            required: false
+            default: ''    
+jobs:
+  test:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 23.4
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npm run CMS
