@@ -7,23 +7,74 @@ export class Homepage extends HelperBase {
     readonly heroText: Locator;
     readonly allHeaders: Locator;
     readonly allArticles: Locator;
+    readonly hero3up: Locator;
+    readonly hero3upHeaders: Locator;
+    readonly hero3upCards: Locator;
+    readonly articleHeader: Locator;
 
     constructor(page: Page) {
         super(page);
         this.heroImage = page.locator('[data-package="Hero3Up"] > div > a[data-id="hero-card"] div div:nth-child(2)');
         this.heroText = page.locator('[data-package="Hero3Up"] > div > a[data-id="hero-card"] div div:nth-child(2) h2');
+        this.hero3up = page.locator('[data-package="Hero3Up"]');
+        this.hero3upCards = page.locator('[data-package="Hero3Up"] a[data-id="hero-card"]');
         this.allHeaders = page.locator('h2[id*=":"]');
         this.allArticles = page.locator('h2[data-card-title="true"]');
+        this.articleHeader = page.locator('[data-article-type] div:nth-child(5) h1');
+        this.hero3upHeaders = page.locator('[data-package="Hero3Up"] h2');
     }
 
     async navigateTo() {
-        await this.page.goto(process.env.URL!);
+        await this.page.goto('https://www.motortrend.com');
         await this.waitForNumberofSeconds(2);
     }
 
     async verifyHeroSection() {
         await this.heroImage.scrollIntoViewIfNeeded();
         await expect(this.heroImage).toBeVisible();
+    }
+
+    async selectHeroArticle() {
+        await this.heroText.scrollIntoViewIfNeeded();
+        const heroArticleText = await this.heroText.textContent();
+        await this.heroText.click();
+        await this.closeVignetteAd();
+        await this.verifyArticleHeader(heroArticleText);
+    }
+
+    async verifyArticleHeader(title) {
+        await this.articleHeader.waitFor({ timeout: 10000, state: 'visible' });
+        const articleTitle = await this.articleHeader.textContent();
+        await expect(articleTitle).toBe(title);
+        const articleURL = await this.page.url();
+        console.log('Article URL: ' + articleURL);
+    }
+
+    async verifyHero3UpSection() {
+        await this.hero3up.scrollIntoViewIfNeeded();
+        await expect(this.hero3up).toBeVisible();
+        const hero3upHeaders = await this.hero3upHeaders.allTextContents();
+        expect(hero3upHeaders).toBeTruthy();
+        expect(hero3upHeaders.length).toBeGreaterThanOrEqual(4);
+
+        const data = JSON.stringify(hero3upHeaders, null, 2);
+        await fs.writeFile('data/allHero3UpTitles.json', data);
+    }
+
+    async verifyHero3UpURls() {
+        const hero3upURLS = await this.hero3upCards;
+        const listofURLs: string[] = [];
+
+        for (const urls of await hero3upURLS.all()) {
+            const cardUrls = 'https://www.motortrend.com' + await urls.getAttribute('href');
+            console.log('URL: ' + cardUrls);
+            if (cardUrls !== null) {
+                listofURLs.push(cardUrls);
+              }
+        }
+
+        const data = JSON.stringify(listofURLs, null, 2);
+        await fs.writeFile('data/allHero3UpURls.json', data);
     }
 
     async verifyHeroArticle() {
@@ -48,7 +99,7 @@ export class Homepage extends HelperBase {
 
     async verifyAllarticles() {
         const allTitles = await this.allArticles.allTextContents();
- 
+
         expect(allTitles).toBeTruthy();
         expect(allTitles.length).toBeGreaterThanOrEqual(30);
 
@@ -68,7 +119,6 @@ export class Homepage extends HelperBase {
     }
 
     async selectJoinNewsletter() {
-        await this.scrollToBottom();
         await this.page.locator('[data-id="join-newsletter"]').click();
         await this.closeVignetteAd();
     }

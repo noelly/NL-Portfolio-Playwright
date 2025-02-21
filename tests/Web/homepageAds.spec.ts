@@ -12,5 +12,4 @@ test('Homepage - Verify all ads', async ({ page }) => {
   await pm.adsPage().scrollThroughAllAds();
   await pm.adsPage().verifyAllAds(12);
   await pm.adsPage().VerifyAdsIDs(12);
-
 });
