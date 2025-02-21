@@ -10,8 +10,8 @@ test('Verify MParticle calls are triggered for MT homepage', async ({ page }) =>
     console.log('Request URL:', url);
 
     await route.continue();
-    await page.waitForTimeout(1000);
-    await page.unrouteAll({ behavior: 'ignoreErrors' });
+    // await page.waitForTimeout(1000);
+    // await page.unrouteAll({ behavior: 'ignoreErrors' });
   });
 
   await page.goto('https://www.motortrend.com/');

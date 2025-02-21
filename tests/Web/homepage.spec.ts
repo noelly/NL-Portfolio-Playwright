@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await pm.accessDeniedPage().isAccessDenied("Motortrend");
 });
 
-test('Homepage - Hero and headers', async ({ page }) => {
+test('Homepage - Headers', async ({ page }) => {
   const pm = new PageManager(page);
   await test.step(`Verify hero section`, async () => {
     await pm.homepage().verifyHeroSection();
