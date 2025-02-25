@@ -21,6 +21,4 @@ test('Create Goal - Challenge 1', async ({ request }: TestContext) => {
   console.log(await `Response Body:  ${responseBody}`);
   console.log(await `Response Time:  ${responseTime}`);
   console.log(await `Status Code:  ${response.status()}`);
-
 });
-  

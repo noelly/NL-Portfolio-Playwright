@@ -29,4 +29,3 @@ test('Update name', async ({ request }: TestContext) => {
   expect(responseBody).toContain('rangobaby@test.com');
   
 });
-  

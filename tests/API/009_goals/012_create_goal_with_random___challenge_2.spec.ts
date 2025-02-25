@@ -22,4 +22,3 @@ test('Create Goal with random - Challenge 2', async ({ request }: TestContext) =
   console.log(await `Response Time:  ${responseTime}`);
   console.log(await `Status Code:  ${response.status()}`);
 });
-  

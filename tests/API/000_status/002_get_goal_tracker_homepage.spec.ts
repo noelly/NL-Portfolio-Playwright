@@ -13,4 +13,3 @@ test('GET GOAL TRACKER HOMEPAGE', async ({ request }: TestContext) => {
   console.log(await `Response Time:  ${responseTime}`);
   console.log(await `Status Code:  ${response.status()}`);
 });
-  

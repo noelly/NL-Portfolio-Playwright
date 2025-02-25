@@ -22,4 +22,3 @@ test('Update Single Goal - Challenge 5', async ({ request }: TestContext) => {
   console.log(await `Response Time:  ${responseTime}`);
   console.log(await `Status Code:  ${response.status()}`);
 });
-  

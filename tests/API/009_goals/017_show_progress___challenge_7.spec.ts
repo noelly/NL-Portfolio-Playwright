@@ -16,4 +16,3 @@ test('Show Progress - Challenge 7', async ({ request }: TestContext) => {
   console.log(await `Response Time:  ${responseTime}`);
   console.log(await `Status Code:  ${response.status()}`);
 });
-  
