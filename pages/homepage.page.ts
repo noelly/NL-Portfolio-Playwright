@@ -29,6 +29,11 @@ export class Homepage extends HelperBase {
         await this.waitForNumberofSeconds(2);
     }
 
+    async navigateToCNB() {
+        await this.page.goto('https://www.cnb.com');
+        await this.waitForNumberofSeconds(2);
+    }
+
     async verifyHeroSection() {
         await this.heroImage.scrollIntoViewIfNeeded();
         await expect(this.heroImage).toBeVisible();

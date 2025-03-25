@@ -94,6 +94,15 @@ export default defineConfig<TestOptions>({
       },
     },
     {
+      name: 'CNB',
+      use: {
+        ...devices['Desktop Chrome'],
+        //baseURL: 'http://www.cnb.com',
+        viewport: { width: 1600, height: 1000 },
+        colorScheme: 'dark',
+      },
+    },
+    {
       name: 'Motortrend',
       use: {
         ...devices['Desktop Chrome'],
