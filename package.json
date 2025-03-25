@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "cnb": "npx playwright test --headed --project=CNB tests/Web/homepageCNB.spec.ts && npx playwright show-report",
+    "CNB": "npx playwright test --project=CNB tests/Web/homepageCNB.spec.ts && npx playwright show-report",
     "cms": "npx playwright test tests/CMS/ --headed --project=CMS && npx playwright show-report",
     "CMS": "npx playwright test tests/CMS/ --project=CMS && npx playwright show-report",
     "motortrend": "npx playwright test tests/Web/  --headed --project=Motortrend && npx playwright show-report",
