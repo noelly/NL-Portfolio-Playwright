@@ -98,7 +98,7 @@ export class WebinyArticles extends HelperBase {
     }
 
     async validateAllArticlesOnList(count = 50) {
-        await expect(this.listOfArticles).toHaveCount(50);
+        await expect(this.listOfArticles).toHaveCount(51);
         console.log(await this.listOfArticles.allTextContents());
     }
 

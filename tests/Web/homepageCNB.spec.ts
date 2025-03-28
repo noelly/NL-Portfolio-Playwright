@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
   await pm.homepage().navigateToCNB();
 });
 
-test('Homepage - Headers', async ({ page }) => {
+test('Homepage - CNB', async ({ page }) => {
   const pm = new PageManager(page);
   await test.step(`Verify SEO title`, async () => {
     await pm.homepage().verifyPageTitle('Banking, Lending, Wealth Planning & More | City National Bank');
