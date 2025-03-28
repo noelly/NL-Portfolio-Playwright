@@ -15,8 +15,8 @@ test.describe('Article list', () => {
   });
 
   test('Verify the article list', async () => {
-    await test.step(`Verify the list displays 50 created articles`, async () => {
-      await pm.articleList().validateAllArticlesOnList(50);
+    await test.step(`Verify the list displays 51 created articles`, async () => {
+      await pm.articleList().validateAllArticlesOnList(51);
     });
   });
 
