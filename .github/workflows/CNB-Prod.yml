@@ -1,15 +1,13 @@
-name: PR Sanity Check
+name: CNB.com PROD
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  schedule:
+    - cron:  '0 10 * * 0-6'  # At 12:00 GMT or 5 AM PST
   workflow_dispatch:
       inputs:
         browser:
           description: 'Browser'
           required: true
-          default: 'firefox'
+          default: 'chrome'
           type: choice
           options:
             - 'chrome'
@@ -30,7 +28,7 @@ on:
             default: ''    
 jobs:
   test:
-    timeout-minutes: 5
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -41,7 +39,5 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Motortrend Smoke Tests
-      run: URL=https://www.motortrend.com npx playwright test tests/Motortrend.com/ --project=MT
-    - name: Run CNB.com Smoke tests
+    - name: Run Playwright tests
       run: npx playwright test tests/CNB.com/ --project=CNB

@@ -1,4 +1,4 @@
-name: MT PROD
+name: Motortrend.com PROD
 on:
   schedule:
     - cron:  '0 10 * * 0-5'  # At 12:00 GMT or 5 AM PST
@@ -40,4 +40,5 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: URL=https://www.motortrend.com npx playwright test tests/Web/ --project=MT
+      run: URL=https://www.motortrend.com npx playwright test tests/Motortrend.com/ --project=MT
+      
