@@ -41,5 +41,7 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: URL=https://www.motortrend.com  npx playwright test tests/Web/ --project=Motortrend 
+    - name: Run Motortrend Smoke Tests
+      run: URL=https://www.motortrend.com npx playwright test tests/Motortrend.com/ --project=MT
+    - name: Run CNB.com Smoke tests
+      run: npx playwright test tests/CNB.com/ --project=CNB
