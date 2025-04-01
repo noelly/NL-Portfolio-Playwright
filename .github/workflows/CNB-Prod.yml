@@ -1,13 +1,13 @@
-name: Motortrend.com PROD
+name: CNB.com PROD
 on:
   schedule:
-    - cron:  '0 10 * * 0-5'  # At 12:00 GMT or 5 AM PST
+    - cron:  '0 10 * * 0-6'  # At 12:00 GMT or 5 AM PST
   workflow_dispatch:
       inputs:
         browser:
           description: 'Browser'
           required: true
-          default: 'firefox'
+          default: 'chrome'
           type: choice
           options:
             - 'chrome'
@@ -40,5 +40,4 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: URL=https://www.motortrend.com npx playwright test tests/Motortrend.com/ --project=MT
-      
+      run: npx playwright test tests/CNB.com/ --project=CNB
